@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Category } from '@/types/term';
+import { Category, Difficulty } from '@/types/term';
 import { Search, X, Zap, Building, Shield, Gauge, Wrench, Database } from 'lucide-react';
 
 interface SearchFiltersProps {
@@ -12,8 +12,8 @@ interface SearchFiltersProps {
   setQuery: (query: string) => void;
   selectedCategory: Category | 'all';
   setSelectedCategory: (category: Category | 'all') => void;
-  selectedDifficulty: '🌱' | '🚀' | 'all';
-  setSelectedDifficulty: (difficulty: '🌱' | '🚀' | 'all') => void;
+  selectedDifficulty: Difficulty | 'all';
+  setSelectedDifficulty: (difficulty: Difficulty | 'all') => void;
   categories: Array<{id: Category, name: string, icon: string, color: string}>;
   resultsCount: number;
 }
@@ -39,8 +39,9 @@ export function SearchFilters({
 }: SearchFiltersProps) {
   const difficulties = [
     { id: 'all' as const, name: 'Vše' },
-    { id: '🌱' as const, name: 'Začátečník' },
-    { id: '🚀' as const, name: 'Pokročilý' },
+    { id: 'beginner' as const, name: 'Začátečník' },
+    { id: 'intermediate' as const, name: 'Pokročilý' },
+    { id: 'advanced' as const, name: 'Expert' },
   ];
 
   return (
@@ -149,7 +150,7 @@ export function SearchFilters({
                   className="cursor-pointer hover:bg-gray-200 transition-colors" 
                   onClick={() => setSelectedDifficulty('all')}
                 >
-                  {selectedDifficulty === '🌱' ? 'Začátečník' : 'Pokročilý'} <X className="w-3 h-3 ml-1" />
+                  {difficulties.find(d => d.id === selectedDifficulty)?.name} <X className="w-3 h-3 ml-1" />
                 </Badge>
               )}
             </div>

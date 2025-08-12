@@ -24,7 +24,11 @@ export function TermCard({ term, relatedTerms }: TermCardProps) {
   const [showTags, setShowTags] = useState(false);
   const [showRelated, setShowRelated] = useState(false);
   
-  const difficultyLabel = term.difficulty === '🌱' ? 'Začátečník' : 'Pokročilý';
+  const difficultyLabel = {
+    'beginner': 'Začátečník',
+    'intermediate': 'Pokročilý', 
+    'advanced': 'Expert'
+  }[term.difficulty] || term.difficulty;
   const links = learningLinks[term.id] || [];
 
   return (

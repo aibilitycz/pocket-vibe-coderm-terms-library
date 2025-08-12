@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import Fuse from 'fuse.js';
-import { Term, Category } from '@/types/term';
+import { Term, Category, Difficulty } from '@/types/term';
 
 export function useSearch(terms: Term[]) {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<'🌱' | '🚀' | 'all'>('all');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all'>('all');
 
   const fuse = useMemo(() => {
     const options = {

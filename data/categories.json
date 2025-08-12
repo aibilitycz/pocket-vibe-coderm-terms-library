@@ -1,44 +1,44 @@
 [
   {
     "id": "vibe-coding",
-    "name": "Vibe Coding Basics",
-    "description": "AI-assisted development a prompting techniky",
-    "icon": "🚀",
-    "color": "bg-purple-500"
+    "name": "Vibe Coding",
+    "description": "Základní pojmy pro práci s AI a vibe coding přístupem",
+    "icon": "zap",
+    "color": "blue"
   },
   {
     "id": "architecture",
     "name": "Architektura",
-    "description": "Frontend, backend, API, databáze",
-    "icon": "🏗️",
-    "color": "bg-blue-500"
+    "description": "Softwarová architektura a návrhové vzory",
+    "icon": "building",
+    "color": "green"
   },
   {
     "id": "security",
     "name": "Bezpečnost",
-    "description": "Autentifikace, autorizace, HTTPS",
-    "icon": "🔒",
-    "color": "bg-red-500"
+    "description": "Kybernetická bezpečnost a ochrana dat",
+    "icon": "shield",
+    "color": "red"
   },
   {
     "id": "performance",
-    "name": "Výkon & Produkce",
-    "description": "Deployment, produkce, cloud",
-    "icon": "⚡",
-    "color": "bg-yellow-500"
+    "name": "Výkon",
+    "description": "Optimalizace a výkonnost aplikací",
+    "icon": "gauge",
+    "color": "yellow"
   },
   {
     "id": "tools",
     "name": "Nástroje",
-    "description": "GitHub, Streamlit, Lovable, v0, Bolt",
-    "icon": "🛠️",
-    "color": "bg-green-500"
+    "description": "Vývojové nástroje a technologie",
+    "icon": "wrench",
+    "color": "purple"
   },
   {
     "id": "data",
-    "name": "Data & Databáze",
-    "description": "Databáze, CRUD, SQL/NoSQL",
-    "icon": "💾",
-    "color": "bg-indigo-500"
+    "name": "Data",
+    "description": "Databáze a správa dat",
+    "icon": "database",
+    "color": "orange"
   }
 ]

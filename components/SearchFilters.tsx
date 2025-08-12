@@ -131,7 +131,7 @@ export function SearchFilters({
                   className="cursor-pointer hover:bg-gray-200 transition-colors" 
                   onClick={() => setQuery('')}
                 >
-                  Hledání: "{query}" <X className="w-3 h-3 ml-1" />
+                  Hledání: &quot;{query}&quot; <X className="w-3 h-3 ml-1" />
                 </Badge>
               )}
               {selectedCategory !== 'all' && (

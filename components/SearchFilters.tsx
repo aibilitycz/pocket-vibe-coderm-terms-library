@@ -39,9 +39,8 @@ export function SearchFilters({
 }: SearchFiltersProps) {
   const difficulties = [
     { id: 'all' as const, name: 'Vše' },
-    { id: 'beginner' as const, name: 'Začátečník' },
-    { id: 'intermediate' as const, name: 'Pokročilý' },
-    { id: 'advanced' as const, name: 'Expert' },
+    { id: '🌱' as const, name: 'Začátečník' },
+    { id: '🚀' as const, name: 'Pokročilý' },
   ];
 
   return (

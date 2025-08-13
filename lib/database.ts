@@ -20,7 +20,7 @@ export class DatabaseService {
       description: term.description,
       practicalExample: term.practical_example,
       relatedTerms: term.related_terms,
-      difficulty: term.difficulty as 'beginner' | 'intermediate' | 'advanced',
+      difficulty: term.difficulty as '🌱' | '🚀',
       category: term.category as Term['category'],
       aiTip: term.ai_tip,
       tags: term.tags
@@ -66,7 +66,7 @@ export class DatabaseService {
       description: term.description,
       practicalExample: term.practical_example,
       relatedTerms: term.related_terms,
-      difficulty: term.difficulty as 'beginner' | 'intermediate' | 'advanced',
+      difficulty: term.difficulty as '🌱' | '🚀',
       category: term.category as Term['category'],
       aiTip: term.ai_tip,
       tags: term.tags
@@ -92,7 +92,7 @@ export class DatabaseService {
       description: term.description,
       practicalExample: term.practical_example,
       relatedTerms: term.related_terms,
-      difficulty: term.difficulty as 'beginner' | 'intermediate' | 'advanced',
+      difficulty: term.difficulty as '🌱' | '🚀',
       category: term.category as Term['category'],
       aiTip: term.ai_tip,
       tags: term.tags

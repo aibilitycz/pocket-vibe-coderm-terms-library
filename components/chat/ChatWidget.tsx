@@ -12,21 +12,62 @@ export default function ChatWidget({
   webhookUrl = process.env.NEXT_PUBLIC_CHAT_WEBHOOK_URL || "https://aimee-v3.app.n8n.cloud/webhook/4091fa09-fb9a-4039-9411-7104d213f601/chat" 
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   const toggleChat = () => {
     setIsOpen(!isOpen)
   }
 
-  const handleIframeLoad = () => {
-    setIsLoading(false)
-  }
+  // Initialize n8n chat when opened
+  useEffect(() => {
+    if (isOpen && !isLoaded && chatContainerRef.current) {
+      const loadChat = async () => {
+        try {
+          // Dynamically import the n8n chat
+          const { createChat } = await import('@n8n/chat')
+          
+          // Create the chat instance
+          createChat({
+            webhookUrl: webhookUrl,
+            webhookConfig: {
+              method: 'POST'
+            },
+            target: chatContainerRef.current!,
+            mode: 'window',
+            chatSessionKey: 'chat-session-' + Date.now(),
+            showWelcomeScreen: true,
+            showWindowCloseButton: false,
+            theme: {
+              theme: {
+                '--chat--color-primary': '#1f2937',
+                '--chat--color-primary-shade-50': '#f9fafb',
+                '--chat--color-primary-shade-100': '#f3f4f6',
+                '--chat--color-secondary': '#6b7280',
+                '--chat--color-white': '#ffffff',
+                '--chat--color-light-gray': '#f3f4f6',
+                '--chat--color-medium-gray': '#6b7280',
+                '--chat--color-dark-gray': '#374151',
+                '--chat--border-radius': '8px',
+                '--chat--font-family': 'Inter, system-ui, sans-serif'
+              }
+            }
+          })
+          
+          setIsLoaded(true)
+        } catch (error) {
+          console.error('Failed to load n8n chat:', error)
+        }
+      }
+      
+      loadChat()
+    }
+  }, [isOpen, isLoaded, webhookUrl])
 
   // Close chat when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen && iframeRef.current && !iframeRef.current.contains(event.target as Node)) {
+      if (isOpen && chatContainerRef.current && !chatContainerRef.current.contains(event.target as Node)) {
         const chatButton = document.getElementById('chat-button')
         if (chatButton && !chatButton.contains(event.target as Node)) {
           setIsOpen(false)
@@ -91,7 +132,7 @@ export default function ChatWidget({
 
           {/* Chat Content */}
           <div className="relative w-full h-[calc(100%-64px)]">
-            {isLoading && (
+            {!isLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
                 <div className="text-center space-y-3">
                   <div className="animate-spin h-8 w-8 border-2 border-gray-300 border-t-gray-900 rounded-full mx-auto"></div>
@@ -100,14 +141,10 @@ export default function ChatWidget({
               </div>
             )}
             
-            <iframe
-              ref={iframeRef}
-              src={webhookUrl}
-              className="w-full h-full border-0"
-              title="AI Chat Assistant"
-              onLoad={handleIframeLoad}
-              allow="microphone; camera; geolocation"
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+            <div 
+              ref={chatContainerRef}
+              className="w-full h-full"
+              style={{ minHeight: '400px' }}
             />
           </div>
         </div>

@@ -10,6 +10,7 @@
     "migrate": "tsx scripts/migrate-data.ts"
   },
   "dependencies": {
+    "@n8n/chat": "^0.50.0",
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",

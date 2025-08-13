@@ -20,73 +20,58 @@ export default function AdminDashboard() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="p-6">
-              <div className="flex items-center">
-                <List className="w-8 h-8 text-blue-500" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Správa termínů</h3>
-                  <p className="text-sm text-gray-500">Upravit existující termíny</p>
+            <div className="bg-white border rounded-lg p-6 space-y-4">
+              <div className="flex items-center space-x-3">
+                <List className="w-6 h-6 text-gray-700" />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Správa termínů</h3>
+                  <p className="text-sm text-gray-600">Upravit existující termíny</p>
                 </div>
               </div>
-              <div className="mt-4">
-                <Link href="/admin/terms">
-                  <Button variant="outline" className="w-full">
-                    Zobrazit termíny
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-center">
-                <Plus className="w-8 h-8 text-green-500" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Nový termín</h3>
-                  <p className="text-sm text-gray-500">Přidat nový termín do slovníku</p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <Link href="/admin/terms/new">
-                  <Button className="w-full">
-                    Vytvořit termín
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-center">
-                <BarChart className="w-8 h-8 text-purple-500" />
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Statistiky</h3>
-                  <p className="text-sm text-gray-500">Přehled dat</p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <Button variant="outline" className="w-full" disabled>
-                  Připravuje se
+              <Link href="/admin/terms">
+                <Button variant="outline" className="w-full">
+                  Zobrazit termíny
                 </Button>
+              </Link>
+            </div>
+
+            <div className="bg-white border rounded-lg p-6 space-y-4">
+              <div className="flex items-center space-x-3">
+                <Plus className="w-6 h-6 text-gray-700" />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Nový termín</h3>
+                  <p className="text-sm text-gray-600">Přidat nový termín do slovníku</p>
+                </div>
               </div>
-            </Card>
+              <Link href="/admin/terms/new">
+                <Button className="w-full">
+                  Vytvořit termín
+                </Button>
+              </Link>
+            </div>
+
+            <div className="bg-white border rounded-lg p-6 space-y-4">
+              <div className="flex items-center space-x-3">
+                <BarChart className="w-6 h-6 text-gray-700" />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Statistiky</h3>
+                  <p className="text-sm text-gray-600">Přehled dat</p>
+                </div>
+              </div>
+              <Button variant="outline" className="w-full" disabled>
+                Připravuje se
+              </Button>
+            </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <Users className="h-5 w-5 text-blue-400" />
-              </div>
-              <div className="ml-3">
-                <h3 className="text-sm font-medium text-blue-800">
-                  Vítejte v admin rozhraní!
-                </h3>
-                <div className="mt-2 text-sm text-blue-700">
-                  <p>
-                    Zde můžete spravovat termíny ve slovníku. Všechny změny se projeví okamžitě 
-                    na veřejné stránce knihovny.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="bg-white border rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Vítejte v admin rozhraní!
+            </h3>
+            <p className="text-gray-600">
+              Zde můžete spravovat termíny ve slovníku. Všechny změny se projeví okamžitě 
+              na veřejné stránce knihovny.
+            </p>
           </div>
         </div>
       </AdminLayout>

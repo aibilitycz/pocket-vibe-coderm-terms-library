@@ -91,3 +91,62 @@
   overflow-y: auto;
   padding: 16px;
 }
+
+/* Hide any internal chat toggle buttons or bubbles */
+.chat-widget-container .chat-toggle,
+.chat-widget-container .chat-bubble,
+.chat-widget-container .floating-button,
+.chat-widget-container [class*="toggle"],
+.chat-widget-container [class*="bubble"],
+.chat-widget-container [class*="floating"] {
+  display: none !important;
+}
+
+/* Ensure chat interface is always visible */
+.chat-widget-container .chat-interface,
+.chat-widget-container .chat-window,
+.chat-widget-container [class*="chat-window"],
+.chat-widget-container [class*="chat-interface"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force immediate display of chat content */
+.chat-widget-container {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Hide any overlay or welcome screens that might block the chat */
+.chat-widget-container .overlay,
+.chat-widget-container .welcome-screen,
+.chat-widget-container [class*="overlay"],
+.chat-widget-container [class*="welcome"] {
+  display: none !important;
+}
+
+/* Hide any launch buttons or initial prompts */
+.chat-widget-container .launch-button,
+.chat-widget-container .start-chat,
+.chat-widget-container [class*="launch"],
+.chat-widget-container [class*="start"],
+.chat-widget-container [class*="initial"] {
+  display: none !important;
+}
+
+/* Ensure chat input and messages are immediately visible */
+.chat-widget-container .chat-input,
+.chat-widget-container .messages-container,
+.chat-widget-container [class*="input"],
+.chat-widget-container [class*="message"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force chat to be in active state */
+.chat-widget-container {
+  --chat-state: 'active' !important;
+}

@@ -43,11 +43,14 @@ async function migrateData() {
     // Transform and insert terms
     console.log('Inserting terms...')
     
-    // Convert emoji difficulties to proper strings
+    // Map emoji difficulties to database string values  
     const difficultyMap: { [key: string]: string } = {
       '🌱': 'beginner',
-      '🚀': 'intermediate', 
-      '🔥': 'advanced'
+      '🚀': 'intermediate',
+      '🔥': 'advanced',
+      'beginner': 'beginner', // Keep existing strings
+      'intermediate': 'intermediate',
+      'advanced': 'advanced'
     }
     
     const transformedTerms = termsData.map((term: any) => ({
@@ -57,7 +60,7 @@ async function migrateData() {
       description: term.description,
       practical_example: term.practicalExample,
       related_terms: term.relatedTerms || [],
-      difficulty: difficultyMap[term.difficulty] || term.difficulty,
+      difficulty: difficultyMap[term.difficulty] || 'beginner', // Default to beginner string
       category: term.category,
       ai_tip: term.aiTip || null,
       tags: term.tags || [],

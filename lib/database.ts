@@ -18,7 +18,7 @@ const mapDifficultyToEmoji = (difficulty: string): '🌱' | '🚀' | '🔥' => {
 }
 
 // Helper function to transform database term to frontend term
-const transformTerm = (dbTerm: Record<string, any>): Term => ({
+const transformTerm = (dbTerm: Record<string, unknown>): Term => ({
   id: dbTerm.id,
   term: dbTerm.term,
   czechName: dbTerm.czech_name,
@@ -86,7 +86,7 @@ export class DatabaseService {
       }
 
       const data = await response.json()
-      return data.map((category: Record<string, any>) => ({
+      return data.map((category: Record<string, unknown>) => ({
         id: category.id as CategoryInfo['id'],
         name: category.name,
         description: category.description,

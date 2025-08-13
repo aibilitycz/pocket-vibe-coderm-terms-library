@@ -232,7 +232,7 @@ export default function EditTermPage() {
                 Upravit termín
               </h1>
               <p className="text-gray-600">
-                Upravit termín "{term.term}"
+                Upravit termín &quot;{term.term}&quot;
               </p>
             </div>
           </div>

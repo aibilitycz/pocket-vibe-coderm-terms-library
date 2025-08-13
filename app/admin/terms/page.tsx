@@ -17,12 +17,12 @@ import {
   Eye,
   Settings,
   ArrowLeft,
-  Filter,
-  MoreVertical
+  Filter
 } from 'lucide-react'
 import { useAuth } from '@/components/auth/AuthProvider'
 
 export default function AdminTermsPage() {
+  // ALL HOOKS MUST BE AT THE TOP - before any conditional returns
   const { userProfile } = useAuth()
   const [terms, setTerms] = useState<Term[]>([])
   const [categories, setCategories] = useState<CategoryInfo[]>([])
@@ -30,24 +30,6 @@ export default function AdminTermsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
-
-  // Check if user is admin
-  if (userProfile?.role !== 'admin') {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Přístup zamítnut</h1>
-          <p className="text-gray-600 mb-4">Nemáte oprávnění k přístupu do admin rozhraní.</p>
-          <Link href="/">
-            <Button variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Zpět na hlavní stránku
-            </Button>
-          </Link>
-        </div>
-      </div>
-    )
-  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -94,11 +76,30 @@ export default function AdminTermsPage() {
   })
 
   const difficulties = [
-    { id: 'all', name: 'Vše', emoji: '' },
-    { id: '🌱', name: 'Začátečník', emoji: '🌱' },
-    { id: '🚀', name: 'Pokročilý', emoji: '🚀' },
-    { id: '🔥', name: 'Expert', emoji: '🔥' },
+    { id: 'all', name: 'Vše' },
+    { id: '🌱', name: 'Začátečník' },
+    { id: '🚀', name: 'Pokročilý' },
+    { id: '🔥', name: 'Expert' },
   ]
+
+  // NOW we can do conditional returns after all hooks are defined
+  // Check if user is admin
+  if (userProfile?.role !== 'admin') {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Přístup zamítnut</h1>
+          <p className="text-gray-600 mb-4">Nemáte oprávnění k přístupu do admin rozhraní.</p>
+          <Link href="/">
+            <Button variant="outline">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Zpět na hlavní stránku
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   if (loading) {
     return (

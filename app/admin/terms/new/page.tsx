@@ -21,6 +21,7 @@ import {
 import { useAuth } from '@/components/auth/AuthProvider'
 
 export default function NewTermPage() {
+  // ALL HOOKS FIRST
   const { userProfile } = useAuth()
   const router = useRouter()
   const [categories, setCategories] = useState<CategoryInfo[]>([])
@@ -38,24 +39,6 @@ export default function NewTermPage() {
   })
   const [newTag, setNewTag] = useState('')
   const [errors, setErrors] = useState<Record<string, string>>({})
-
-  // Check if user is admin
-  if (userProfile?.role !== 'admin') {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Přístup zamítnut</h1>
-          <p className="text-gray-600 mb-4">Nemáte oprávnění k přístupu do admin rozhraní.</p>
-          <Link href="/">
-            <Button variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Zpět na hlavní stránku
-            </Button>
-          </Link>
-        </div>
-      </div>
-    )
-  }
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -105,7 +88,7 @@ export default function NewTermPage() {
 
     setLoading(true)
     try {
-      const newTerm = await CRUDService.createTerm({
+      await CRUDService.createTerm({
         term: formData.term.trim(),
         czechName: formData.czechName.trim(),
         description: formData.description.trim(),
@@ -148,6 +131,24 @@ export default function NewTermPage() {
     { id: '🚀' as const, name: 'Pokročilý', emoji: '🚀' },
     { id: '🔥' as const, name: 'Expert', emoji: '🔥' },
   ]
+
+  // CONDITIONAL RETURNS AFTER HOOKS
+  if (userProfile?.role !== 'admin') {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Přístup zamítnut</h1>
+          <p className="text-gray-600 mb-4">Nemáte oprávnění k přístupu do admin rozhraní.</p>
+          <Link href="/">
+            <Button variant="outline">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Zpět na hlavní stránku
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-white">

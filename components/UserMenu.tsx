@@ -29,6 +29,15 @@ export default function UserMenu() {
     )
   }
 
+  // If user exists but no profile, show loading state
+  if (user && !userProfile) {
+    return (
+      <div className="animate-pulse">
+        <div className="h-9 w-20 bg-gray-200 rounded"></div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative">
       <Button

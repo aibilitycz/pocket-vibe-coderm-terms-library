@@ -2,9 +2,8 @@
 
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
 import AdminLayout from '@/components/admin/AdminLayout'
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, List, Users, BarChart } from 'lucide-react'
+import { Plus, List, BarChart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminDashboard() {

@@ -1,4 +1,4 @@
-export type Difficulty = '🌱' | '🚀';
+export type Difficulty = '🌱' | '🚀' | '🔥';
 
 export type Category = 
   | 'vibe-coding'

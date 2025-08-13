@@ -16,6 +16,13 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const connectionOk = await DatabaseService.testConnection();
+        
+        if (!connectionOk) {
+          setLoading(false);
+          return;
+        }
+
         const [termsData, categoriesData] = await Promise.all([
           DatabaseService.getTerms(),
           DatabaseService.getCategories(),
@@ -24,7 +31,7 @@ export default function Home() {
         setTerms(termsData);
         setCategories(categoriesData);
       } catch (error) {
-        console.error('Error loading data:', error);
+        // Handle error silently
       } finally {
         setLoading(false);
       }

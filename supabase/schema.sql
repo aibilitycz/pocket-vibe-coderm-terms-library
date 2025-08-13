@@ -28,7 +28,7 @@ CREATE TABLE terms (
   description TEXT NOT NULL,
   practical_example TEXT NOT NULL,
   related_terms TEXT[] DEFAULT '{}',
-  difficulty TEXT NOT NULL CHECK (difficulty IN ('🌱', '🚀')),
+  difficulty TEXT NOT NULL CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
   category TEXT NOT NULL REFERENCES categories(id),
   ai_tip TEXT,
   tags TEXT[] DEFAULT '{}',

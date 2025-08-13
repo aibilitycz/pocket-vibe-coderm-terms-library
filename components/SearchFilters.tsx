@@ -42,6 +42,7 @@ export function SearchFilters({
     { id: 'all' as const, name: 'Vše' },
     { id: '🌱' as const, name: 'Začátečník' },
     { id: '🚀' as const, name: 'Pokročilý' },
+    { id: '🔥' as const, name: 'Expert' },
   ];
 
   return (

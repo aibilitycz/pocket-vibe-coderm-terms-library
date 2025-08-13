@@ -16,7 +16,7 @@ CREATE TABLE terms (
   description TEXT NOT NULL,
   practical_example TEXT NOT NULL,
   related_terms TEXT[] DEFAULT '{}',
-  difficulty TEXT NOT NULL CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
+  difficulty TEXT NOT NULL CHECK (difficulty IN ('🌱', '🚀')),
   category TEXT NOT NULL REFERENCES categories(id),
   ai_tip TEXT,
   tags TEXT[] DEFAULT '{}',
@@ -39,11 +39,13 @@ ALTER TABLE terms ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Allow public read access on categories" ON categories FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on terms" ON terms FOR SELECT USING (true);
 
--- Allow public insert/update access for migration (you can restrict this later)
-CREATE POLICY "Allow public insert on categories" ON categories FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow public insert on terms" ON terms FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow public update on categories" ON categories FOR UPDATE USING (true);
-CREATE POLICY "Allow public update on terms" ON terms FOR UPDATE USING (true);
+-- Allow authenticated users to insert/update/delete
+CREATE POLICY "Allow authenticated insert on categories" ON categories FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "Allow authenticated insert on terms" ON terms FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "Allow authenticated update on categories" ON categories FOR UPDATE TO authenticated USING (true);
+CREATE POLICY "Allow authenticated update on terms" ON terms FOR UPDATE TO authenticated USING (true);
+CREATE POLICY "Allow authenticated delete on categories" ON categories FOR DELETE TO authenticated USING (true);
+CREATE POLICY "Allow authenticated delete on terms" ON terms FOR DELETE TO authenticated USING (true);
 
 -- Update updated_at timestamp automatically
 CREATE OR REPLACE FUNCTION update_updated_at_column()

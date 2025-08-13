@@ -5,6 +5,7 @@ import { Term, CategoryInfo } from '@/types/term';
 import { TermCard } from '@/components/TermCard';
 import { SearchFilters } from '@/components/SearchFilters';
 import { useSearch } from '@/hooks/useSearch';
+import { DatabaseService } from '@/lib/database';
 import { Search } from 'lucide-react';
 
 export default function Home() {
@@ -15,18 +16,22 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [termsResponse, categoriesResponse] = await Promise.all([
-          fetch('/data/terms.json'),
-          fetch('/data/categories.json'),
-        ]);
+        const connectionOk = await DatabaseService.testConnection();
         
-        const termsData = await termsResponse.json();
-        const categoriesData = await categoriesResponse.json();
+        if (!connectionOk) {
+          setLoading(false);
+          return;
+        }
+
+        const [termsData, categoriesData] = await Promise.all([
+          DatabaseService.getTerms(),
+          DatabaseService.getCategories(),
+        ]);
         
         setTerms(termsData);
         setCategories(categoriesData);
       } catch (error) {
-        console.error('Error loading data:', error);
+        // Handle error silently
       } finally {
         setLoading(false);
       }

@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pocket Vibe Coder Terms - Supabase Integration
 
-## Getting Started
+A sample Next.js application demonstrating Supabase integration for a coding terms dictionary.
 
-First, run the development server:
+## Features
 
+- **Full-stack TypeScript**: Next.js 15 with TypeScript
+- **Supabase Integration**: Database operations, Row Level Security
+- **Modern UI**: Tailwind CSS with Shadcn/ui components  
+- **Search & Filter**: Full-text search with multiple filters
+- **Clean Architecture**: Proper separation of concerns
+
+## Quick Start
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set Up Supabase
+1. Create a new project at [Supabase](https://supabase.com)
+2. Copy `.env.example` to `.env.local`
+3. Update `.env.local` with your Supabase credentials:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Create Database Schema
+In your Supabase SQL Editor, run the schema from `supabase/schema.sql`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Populate Database
+```bash
+npm run migrate
+```
 
-## Learn More
+### 5. Run the Application
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── app/page.tsx           # Main application page
+├── components/            # Reusable UI components
+├── lib/
+│   ├── supabase.ts       # Supabase client configuration
+│   └── database.ts       # Database service layer
+├── types/                # TypeScript type definitions
+├── supabase/schema.sql   # Database schema
+└── scripts/migrate-data.ts # Data migration
+```
 
-## Deploy on Vercel
+## Database Schema
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **categories**: Term categories with metadata
+- **terms**: Coding terms with descriptions, examples, and relationships
+- **Row Level Security**: Public read access, controlled write access
+- **Full-text Search**: PostgreSQL search capabilities
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Key Technologies
+
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety
+- **Supabase** - Backend-as-a-Service
+- **Tailwind CSS** - Utility-first CSS
+- **Shadcn/ui** - Modern component library
+
+## Development
+
+This is a clean sample application showing best practices for:
+- Supabase integration in Next.js
+- Type-safe database operations
+- Modern React patterns
+- Clean project structure
+
+Perfect as a starting point for building more complex applications with user authentication, real-time features, and advanced database operations.

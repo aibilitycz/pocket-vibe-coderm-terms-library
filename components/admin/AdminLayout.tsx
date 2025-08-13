@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/components/auth/AuthProvider'
 import { Button } from '@/components/ui/button'
-import { LogOut, Home, Plus, List } from 'lucide-react'
+import { LogOut, Home, Plus, List, Users } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -11,14 +11,29 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
-  const { user, signOut } = useAuth()
+  const { user, userProfile, signOut } = useAuth()
   const pathname = usePathname()
 
   const navigation = [
     { name: 'Domů', href: '/', icon: Home },
     { name: 'Správa termínů', href: '/admin/terms', icon: List },
     { name: 'Nový termín', href: '/admin/terms/new', icon: Plus },
+    { name: 'Uživatelé', href: '/admin/users', icon: Users },
   ]
+
+  if (userProfile?.role !== 'admin') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Přístup odepřen</h1>
+          <p className="text-gray-600 mb-4">Pro přístup k této stránce potřebujete admin oprávnění.</p>
+          <Link href="/">
+            <Button>Zpět na hlavní stránku</Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

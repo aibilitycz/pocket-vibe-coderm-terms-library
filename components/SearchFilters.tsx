@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Category, Difficulty } from '@/types/term';
 import { Search, X, Zap, Building, Shield, Gauge, Wrench, Database } from 'lucide-react';
+import UserMenu from '@/components/UserMenu';
 
 interface SearchFiltersProps {
   query: string;
@@ -45,16 +46,21 @@ export function SearchFilters({
 
   return (
     <div className="bg-white border rounded-lg p-6 space-y-6">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          Pocket Vibe Coder Terms Library
-        </h1>
-        <p className="text-gray-600">
-          Terminologický slovník pro Vibe Coding Summer
-        </p>
-        <p className="text-sm text-gray-500">
-          {resultsCount} {resultsCount === 1 ? 'termín' : resultsCount < 5 ? 'termíny' : 'termínů'}
-        </p>
+      <div className="flex justify-between items-start">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            Pocket Vibe Coder Terms Library
+          </h1>
+          <p className="text-gray-600">
+            Terminologický slovník pro Vibe Coding Summer
+          </p>
+          <p className="text-sm text-gray-500">
+            {resultsCount} {resultsCount === 1 ? 'termín' : resultsCount < 5 ? 'termíny' : 'termínů'}
+          </p>
+        </div>
+        <div className="flex-shrink-0">
+          <UserMenu />
+        </div>
       </div>
       
       <Separator />

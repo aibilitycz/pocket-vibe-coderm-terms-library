@@ -1,0 +1,93 @@
+/* n8n Chat Widget Custom Styling */
+.chat-widget-container {
+  --chat--color-primary: #000000;
+  --chat--color-primary-shade-50: #ffffff;
+  --chat--color-primary-shade-100: #f8fafc;
+  --chat--color-secondary: #64748b;
+  --chat--color-white: #ffffff;
+  --chat--color-light-gray: #f8fafc;
+  --chat--color-medium-gray: #64748b;
+  --chat--color-dark-gray: #1e293b;
+  --chat--border-radius: 6px;
+  --chat--font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --chat--spacing: 16px;
+  --chat--message-bot-background: #f8fafc;
+  --chat--message-user-background: #000000;
+  --chat--message-user-color: #ffffff;
+  --chat--message-bot-color: #1e293b;
+  --chat--input-background: #ffffff;
+  --chat--input-border-color: #e2e8f0;
+  --chat--input-border-focus-color: #000000;
+  --chat--button-primary-background: #000000;
+  --chat--button-primary-color: #ffffff;
+  --chat--button-primary-border: #000000;
+  --chat--header-background: #000000;
+  --chat--header-color: #ffffff;
+  --chat--border-color: #e2e8f0;
+}
+
+/* Override any inline styles */
+.chat-widget-container * {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
+}
+
+/* Chat input styling */
+.chat-widget-container input,
+.chat-widget-container textarea {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  padding: 8px 12px !important;
+}
+
+.chat-widget-container input:focus,
+.chat-widget-container textarea:focus {
+  border-color: #000000 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Chat button styling */
+.chat-widget-container button {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.chat-widget-container button:hover {
+  background: #1e293b !important;
+  border-color: #1e293b !important;
+}
+
+/* Message styling */
+.chat-widget-container [data-message-type="bot"] {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+  border-radius: 6px !important;
+  padding: 12px !important;
+  margin: 8px 0 !important;
+}
+
+.chat-widget-container [data-message-type="user"] {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 12px !important;
+  margin: 8px 0 !important;
+}
+
+/* Remove any unwanted borders or shadows */
+.chat-widget-container .chat-window {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Ensure proper scrolling */
+.chat-widget-container .chat-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 16px;
+}
